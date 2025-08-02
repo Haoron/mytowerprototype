@@ -1,7 +1,6 @@
 // BuildUI.cs
 using UnityEngine;
 using Unity.Entities;
-using Unity.Mathematics;
 
 public class BuildUI : MonoBehaviour
 {
