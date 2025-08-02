@@ -10,16 +10,24 @@ public class BuildUI : MonoBehaviour
     public BaseAuthoring BaseRef;
     public UnityEngine.InputSystem.InputAction BuildBarracksAction;
 
+    Entity _barracksPrefabEntity;
+
+    void Start()
+    {
+        var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
+        _barracksPrefabEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(BarracksPrefab, settings);
+    }
+
     void OnEnable() => BuildBarracksAction.Enable();
     void OnDisable() => BuildBarracksAction.Disable();
 
     void Update()
     {
         if (BuildBarracksAction.WasPressedThisFrame())
-            TryBuild(BarracksPrefab, BarracksCost);
+            TryBuild(_barracksPrefabEntity, BarracksCost);
     }
 
-    void TryBuild(GameObject prefab, int cost)
+    void TryBuild(Entity prefab, int cost)
     {
         var ecb = World.DefaultGameObjectInjectionWorld
                      .GetOrCreateSystemManaged<BeginSimulationEntityCommandBufferSystem>()
