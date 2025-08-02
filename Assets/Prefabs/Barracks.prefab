@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4658133638545750820}
   - component: {fileID: 6395257623008763153}
   - component: {fileID: 6510124192918180610}
+  - component: {fileID: 6723613541148253317}
   - component: {fileID: 5056297015682837977}
   m_Layer: 0
   m_Name: Barracks
@@ -87,6 +88,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6723613541148253317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410555735395091222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80fa37f61f8245089de7806aa306c4ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnOffset: {x: 0, y: 0, z: 0}
+  SpawnRate: 5
+  UnitPrefab: {fileID: 3460007549284238132, guid: 28fc0d691d78ae44a91152b6415228d1, type: 3}
+  Cost: 100
 --- !u!65 &5056297015682837977
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4864727197448216327}
   - component: {fileID: 456683285108448410}
   - component: {fileID: 7148655077142940076}
+  - component: {fileID: 6851451778917601164}
   - component: {fileID: 7727740695618304329}
   m_Layer: 0
   m_Name: PlayerUnit
@@ -87,6 +88,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6851451778917601164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460007549284238132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b67925a3a75498a92a203b481ef2141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 5
+  Damage: 1
+  AttackRange: 1.5
+  AttackCooldown: 1
+  HealthValue: 10
 --- !u!65 &7727740695618304329
 BoxCollider:
   m_ObjectHideFlags: 0
