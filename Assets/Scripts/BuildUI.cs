@@ -6,7 +6,7 @@ using Unity.Mathematics;
 public class BuildUI : MonoBehaviour
 {
     public int BarracksCost = 100;
-    public GameObject BarracksPrefab;
+    public Entity BarracksPrefab;
     public BaseAuthoring BaseRef;
     public UnityEngine.InputSystem.InputAction BuildBarracksAction;
 
@@ -19,14 +19,14 @@ public class BuildUI : MonoBehaviour
             TryBuild(BarracksPrefab, BarracksCost);
     }
 
-    void TryBuild(GameObject prefab, int cost)
+    void TryBuild(Entity prefab, int cost)
     {
         var ecb = World.DefaultGameObjectInjectionWorld
                      .GetOrCreateSystemManaged<BeginSimulationEntityCommandBufferSystem>()
                      .CreateCommandBuffer();
 
-        ecb.CreateEntity();
-        ecb.AddComponent(new BuildRequest
+        var request = ecb.CreateEntity();
+        ecb.AddComponent(request, new BuildRequest
         {
             Prefab = prefab,
             Cost = cost,
