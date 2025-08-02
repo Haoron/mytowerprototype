@@ -13,8 +13,7 @@ public class BuildUI : MonoBehaviour
 
     void Start()
     {
-        var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
-        _barracksPrefabEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(BarracksPrefab, settings);
+        _barracksPrefabEntity = BarracksPrefab;
     }
 
     void OnEnable() => BuildBarracksAction.Enable();
