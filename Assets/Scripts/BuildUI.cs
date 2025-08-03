@@ -25,6 +25,12 @@ public class BuildUI : MonoBehaviour
             TryBuild(_barracksPrefabEntity, BarracksCost);
     }
 
+    // Allow UI buttons to trigger barracks construction.
+    public void BuildBarracks()
+    {
+        TryBuild(_barracksPrefabEntity, BarracksCost);
+    }
+
     void TryBuild(Entity prefab, int cost)
     {
         var ecb = World.DefaultGameObjectInjectionWorld
