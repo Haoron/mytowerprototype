@@ -18,6 +18,8 @@ public partial struct EnemySpawnerSystem : ISystem
         SpawnInterval = 3f;
         _timer = SpawnInterval;
         state.RequireForUpdate<BaseTag>();  // Need base reference
+        // Do not run until an enemy prefab exists to avoid GetSingleton errors
+        state.RequireForUpdate<EnemyPrefab>();
     }
 
     public void OnUpdate(ref SystemState state)
