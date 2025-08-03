@@ -1,6 +1,7 @@
 // BuildUI.cs
 using UnityEngine;
 using Unity.Entities;
+using UnityEngine.UI;
 
 public class BuildUI : MonoBehaviour
 {
@@ -13,7 +14,30 @@ public class BuildUI : MonoBehaviour
 
     void Start()
     {
+        // Cache entity prefab passed from inspector. If none provided, attempt to
+        // locate one converted in the scene by searching for the prefab tag.
         _barracksPrefabEntity = BarracksPrefab;
+
+        if (_barracksPrefabEntity == Entity.Null)
+        {
+            var em = World.DefaultGameObjectInjectionWorld.EntityManager;
+            var query = em.CreateEntityQuery(typeof(BarracksTag), typeof(Building), typeof(Unity.Entities.Prefab));
+            if (query.CalculateEntityCount() > 0)
+                _barracksPrefabEntity = query.GetSingletonEntity();
+        }
+
+        // Locate base authoring if not linked in inspector.
+        if (BaseRef == null)
+            BaseRef = FindObjectOfType<BaseAuthoring>();
+
+        // Hook up UI button automatically so no cross-scene reference is needed.
+        var buttonObj = GameObject.Find("BarracksButton");
+        if (buttonObj != null)
+        {
+            var btn = buttonObj.GetComponent<Button>();
+            if (btn != null)
+                btn.onClick.AddListener(BuildBarracks);
+        }
     }
 
     void OnEnable() => BuildBarracksAction.Enable();
@@ -33,6 +57,9 @@ public class BuildUI : MonoBehaviour
 
     void TryBuild(Entity prefab, int cost)
     {
+        if (prefab == Entity.Null || BaseRef == null)
+            return;
+
         var ecb = World.DefaultGameObjectInjectionWorld
                      .GetOrCreateSystemManaged<BeginSimulationEntityCommandBufferSystem>()
                      .CreateCommandBuffer();
