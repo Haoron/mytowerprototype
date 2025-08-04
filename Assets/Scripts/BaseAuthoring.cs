@@ -18,6 +18,12 @@ public class BaseAuthoring : MonoBehaviour
                 Rotation = quaternion.identity,
                 Scale = 1
             });
+
+            var slots = AddBuffer<ReservedBuildSlot>(entity);
+            slots.Add(new ReservedBuildSlot { Offset = new float3(5, 0, 0), Occupied = false });
+            slots.Add(new ReservedBuildSlot { Offset = new float3(-5, 0, 0), Occupied = false });
+            slots.Add(new ReservedBuildSlot { Offset = new float3(0, 0, 5), Occupied = false });
+            slots.Add(new ReservedBuildSlot { Offset = new float3(0, 0, -5), Occupied = false });
         }
     }
 }
